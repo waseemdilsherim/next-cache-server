@@ -33,7 +33,6 @@ app.get("/api/get", async (req, res) => {
 // API endpoint with cache headers (for client-side caching)
 app.post("/api/post", async (req, res) => {
   console.log("calling POST request");
-  console.log("req.body: ", req.body);
   await delay(2000);
   res.json({
     message: "This is a post request",
