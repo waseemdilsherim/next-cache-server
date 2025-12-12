@@ -20,9 +20,9 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // API endpoint with no cache headers (default)
 app.get("/api/get", async (req, res) => {
-  console.log("calling GET request");
-  await delay(2000);
   getCounter++;
+  console.log("calling GET request, counter ------>: ", getCounter);
+  await delay(2000);
   res.json({
     message: "This is a get request",
     timestamp: new Date().toISOString(),
@@ -37,9 +37,9 @@ app.get("/api/get", async (req, res) => {
 
 // API endpoint with cache headers (for client-side caching)
 app.post("/api/post", async (req, res) => {
-  console.log("calling POST request");
-  await delay(2000);
   postCounter++;
+  console.log("calling POST request, counter ------>: ", postCounter);
+  await delay(2000);
   res.json({
     message: "This is a post request",
     timestamp: new Date().toISOString(),
@@ -49,5 +49,14 @@ app.post("/api/post", async (req, res) => {
       value: Math.random() * 1000,
       description: "This is a post request",
     },
+  });
+});
+
+app.get("/api/reset", (req, res) => {
+  getCounter = 0;
+  postCounter = 0;
+  res.json({
+    message: "Request counter reset",
+    timestamp: new Date().toISOString(),
   });
 });
