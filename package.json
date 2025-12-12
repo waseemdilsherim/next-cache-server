@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node index.ts",
-    "build": "tsc && tsc --project netlify/functions/tsconfig.json",
-    "build:netlify": "npm run build",
+    "build": "tsc",
+    "build:netlify": "node scripts/build-netlify.js",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
