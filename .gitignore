@@ -3,3 +3,7 @@ dist/
 .env
 *.log
 
+# Compiled JavaScript files (keep TypeScript source only)
+src/**/*.js
+!src/**/*.ts
+
