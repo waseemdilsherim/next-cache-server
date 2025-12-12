@@ -1,17 +1,16 @@
+// @ts-ignore - serverless-http doesn't have types
+import serverless from "serverless-http";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Request counter to track API calls
+// Note: In serverless, this resets on cold starts
 let requestCount = 0;
 const requestLogs: Array<{
   timestamp: string;
@@ -117,7 +116,5 @@ app.post("/api/reset", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📊 Request logging enabled`);
-});
+// Export the serverless-wrapped Express app
+export const handler = serverless(app);
