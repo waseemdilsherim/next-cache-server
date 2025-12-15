@@ -55,8 +55,11 @@ app.post("/api/post", async (req, res) => {
 app.get("/api/reset", (req, res) => {
   getCounter = 0;
   postCounter = 0;
+  console.log("resetting counters ------>: ", getCounter, postCounter);
   res.json({
     message: "Request counter reset",
     timestamp: new Date().toISOString(),
+    getCounter,
+    postCounter,
   });
 });
